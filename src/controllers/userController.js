@@ -6,11 +6,11 @@ class UserController {
   // Função para cadastro de usuário
   static async register(req, res) {
     try {
-      
+
       // Criptografa a senha antes de salvar
       const { full_name, email, password, phone, role } = req.body;
       const passwordHash = await bcrypt.hash(password, 10);
-      
+
       // Chama o serviço para criar o usuário
       await UserService.createUser({
         full_name,
