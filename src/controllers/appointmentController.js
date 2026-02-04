@@ -41,6 +41,20 @@ class AppointmentController {
       res.status(500).json({ error: error.message });
     }
   }
+
+  // Lista os agendamentos de um usuário específico
+  static async listByUser(req, res) {
+    try {
+      const userId = req.params.user_id;
+
+      const appointments = await AppointmentService.listAppointmentsByUser(userId);
+
+      res.json(appointments);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+  
 }
 
 module.exports = AppointmentController;

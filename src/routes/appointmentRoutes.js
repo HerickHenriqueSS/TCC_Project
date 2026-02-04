@@ -12,4 +12,7 @@ router.get('/', AppointmentController.list);
 // Rota para cancelar um agendamento
 router.put('/:id/cancel', AppointmentController.cancel);
 
+// Lista agendamentos de um usuário específico
+router.get('/user/:user_id', AppointmentController.listByUser);
+
 module.exports = router;

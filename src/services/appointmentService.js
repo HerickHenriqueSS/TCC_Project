@@ -38,6 +38,26 @@ class AppointmentService {
 
     return rows;
   }
+
+   // Lista os agendamentos de um usuário específico
+  static async listAppointmentsByUser(userId) {
+    const [rows] = await pool.query(`
+      SELECT 
+        a.appointment_id,
+        s.name AS service_name,
+        a.appointment_date,
+        a.appointment_time,
+        a.status,
+        a.created_at
+      FROM appointments a
+      INNER JOIN services s ON s.service_id = a.service_id
+      WHERE a.user_id = ?
+      ORDER BY a.appointment_date, a.appointment_time
+    `, [userId]);
+
+    return rows;
+  }
+  
 }
 
 module.exports = AppointmentService;
