@@ -32,6 +32,15 @@ class AppointmentController {
       res.status(500).json({ error: error.message });
     }
   }
+  // Lista todos os agendamentos
+  static async list(req, res) {
+    try {
+      const appointments = await AppointmentService.listAppointments();
+      res.json(appointments);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
 }
 
 module.exports = AppointmentController;

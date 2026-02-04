@@ -6,6 +6,9 @@ const router = express.Router();
 // Rota para criar um novo agendamento
 router.post('/', AppointmentController.create);
 
+// Listar todos os agendamentos
+router.get('/', AppointmentController.list);
+
 // Rota para cancelar um agendamento
 router.put('/:id/cancel', AppointmentController.cancel);
 
