@@ -15,4 +15,10 @@ router.put('/:id/cancel', AppointmentController.cancel);
 // Lista agendamentos de um usuário específico
 router.get('/user/:user_id', AppointmentController.listByUser);
 
+
+const authMiddleware = require('../middlewares/authMiddleware');
+
+// Cliente vê só seus proprios agendagemtos
+router.get('/me', authMiddleware, AppointmentController.listMyAppointments);
+
 module.exports = router;

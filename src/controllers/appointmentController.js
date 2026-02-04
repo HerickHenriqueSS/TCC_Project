@@ -54,7 +54,17 @@ class AppointmentController {
       res.status(500).json({ error: error.message });
     }
   }
-  
-}
 
+  static async listMyAppointments(req, res) {
+    try {
+      const userId = req.user.id; // 👈 vem do token
+
+      const appointments = await AppointmentService.listAppointmentsByUser(userId);
+
+      res.json(appointments);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+}
 module.exports = AppointmentController;

@@ -2,7 +2,7 @@ require('dotenv').config();
 const app = require('./app');
 const pool = require('./config/db');
 
-//Conecta ao banco de dados e inicia o servidor
+// Conecta ao banco de dados e inicia o servidor
 (async () => {
     try {
         const connection = await pool.getConnection();
@@ -14,9 +14,15 @@ const pool = require('./config/db');
 
 })();
 
-//Inicia o servidor na porta definida no .env
+// Inicia o servidor na porta definida no .env
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
+
 });
+
+// Adiciona rotas de autenticação
+const authRoutes = require('./routes/authRoutes');
+
+app.use('/api/auth', authRoutes);

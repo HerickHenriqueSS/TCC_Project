@@ -18,4 +18,8 @@ app.use('/api/users', userRoutes);
 //Rotas de agendamentos
 app.use('/api/appointments', appointmentRoutes);
 
+//Rotas de autenticação
+const authRoutes = require('./routes/authRoutes');
+app.use('/api/auth', authRoutes);
+
 module.exports = app;
